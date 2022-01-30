@@ -1,0 +1,6 @@
+# ignore files starting with underline
+_*.*
+
+#ignore node_modules
+node_modules
+/package-lock.json
