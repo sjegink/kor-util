@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		function write(label,...strs){
+			const div = document.createElement('div');
+			div.style.display = "flex";
+			const b = document.createElement('b');
+			b.innerText = label;
+			div.appendChild(b);
+			if(strs.length){
+				const p = document.createElement('p');
+				p.style.display = "flex";
+				p.style.flexDirection = "column";
+				div.appendChild(p);
+				strs.map(str=>{
+					const span = document.createElement('span');
+					span.innerText = JSON.stringify(str);
+					p.appendChild(span);
+				});
+			}
+			document.body.appendChild(div);
+		}
+		function writeEval(label, src){
+			write(label);
+			write("　");
+			src.split("\n").map(ln=>{
+				if(ln = ln.replace(/\/\/.*/,"").trim()) write(ln, eval(ln));
+			});
+			write("　");
+		}
+	</script>
+	<script type="text/javascript" src="../dist/core.min.js"></script>
+	<script type="text/javascript" src="../dist/syntax.min.js"></script>
+</head>
+<body>
+	<script>
+		let str;
+		
+		write("기본");
+
+		writeEval("isKoreanPhoneme", `
+KorUtil.isKoreanPhoneme("ㄱ"); // : true
+KorUtil.isKoreanPhoneme("ㅏ"); // : true
+KorUtil.isKoreanPhoneme("가"); // : false
+KorUtil.isKoreanPhoneme("rk"); // (=="r") : false
+KorUtil.isKoreanPhoneme("rk", true); // (=="ㄱ") : true
+		`);
+		writeEval("isConsonant", `
+KorUtil.isConsonant("ㄱ"); // : true
+KorUtil.isConsonant("ㅏ"); // : false
+KorUtil.isConsonant("가"); // : false
+KorUtil.isConsonant("rk"); // (=="r") : false
+KorUtil.isConsonant("rk", true); // (=="ㄱ") : true
+		`);
+		writeEval("isFirstSound", `
+KorUtil.isFirstSound("ㄸ"); // : true
+KorUtil.isFirstSound("ㄶ"); // : false
+KorUtil.isFirstSound("가"); // : false
+KorUtil.isFirstSound("sw", true); // (=="ㄴ") : true
+		`);
+		writeEval("isMidSound", `
+KorUtil.isVowel("ㄱ"); // : false
+KorUtil.isVowel("ㅝ"); // : true
+KorUtil.isVowel("iam", true); // (=="ㅑ") : true
+		`);
+		writeEval("isLastSound", `
+KorUtil.isLastSound("ㄲ"); // : true
+KorUtil.isLastSound("ㄸ"); // : false
+KorUtil.isLastSound("Ro", true); // (=="ㄲ") : true
+		`);
+		writeEval("convertAlphabetToPhoneme", `
+KorUtil.convertAlphabetToPhoneme("a"); // : "ㅁ"
+KorUtil.convertAlphabetToPhoneme("FAIL"); // : "FAIL"
+KorUtil.convertAlphabetToPhoneme("A", "FAIL"); // : "FAIL"
+KorUtil.convertAlphabetToPhoneme("A", true); // : "ㅁ"
+KorUtil.convertAlphabetToPhoneme("가", "FAIL", true); // : "FAIL"
+		`);
+		writeEval("convertPhonemeToAlphabet", `
+KorUtil.convertPhonemeToAlphabet("ㅞ"); // : "np"
+KorUtil.convertPhonemeToAlphabet("FAIL"); // : "FAIL"
+KorUtil.convertPhonemeToAlphabet("ㅏ긴문자열", "FAIL"); // : "FAIL"
+		`);
+
+		writeEval("isKoreanChar", `
+KorUtil.isKoreanChar("가foo"); // : true
+KorUtil.isKoreanChar("rk가"); // : false
+KorUtil.isKoreanChar("ㅑ가"); // : false
+KorUtil.isKoreanChar("字가"); // : false
+		`);
+
+		writeEval("isKorean", `
+KorUtil.isKorean("하늘"); // : true
+KorUtil.isKorean("띄어쓴 문장"); // : false
+KorUtil.isKorean("마침표."); // : false
+KorUtil.isKorean("알파벳A"); // : false
+		`);
+		
+		writeEval("isKorean", `
+KorUtil.isKorean("하늘"); // : true
+KorUtil.isKorean("띄어쓴 문장"); // : false
+KorUtil.isKorean("마침표."); // : false
+KorUtil.isKorean("알파벳A"); // : false
+		`);
+
+		writeEval("indexOfKorean", `
+KorUtil.indexOfKorean("012345"); // : -1
+KorUtil.indexOfKorean("가ㅉ234"); // : 0
+KorUtil.indexOfKorean("0ㅉ234"); // : 1
+		`);
+
+		writeEval("indexOfKoreanChar", `
+KorUtil.indexOfKoreanChar("012345"); // : -1
+KorUtil.indexOfKoreanChar("0ㄱ짝34"); // : 2
+		`);
+
+		writeEval("indexOfKoreanPhoneme", `
+KorUtil.indexOfKoreanPhoneme("012345"); // : -1
+KorUtil.indexOfKoreanPhoneme("0가ㅉ34"); // : 2
+		`);
+
+		writeEval("hasLastSound", `
+KorUtil.hasLastSound("나의 책상"); // : true
+KorUtil.hasLastSound("무지개"); // : false
+KorUtil.hasLastSound("twin"); // : false
+KorUtil.hasLastSound("특문!"); // : false
+		`);
+		writeEval("qwerty", `
+KorUtil.qwerty("닭 쫓던 개X 지붕 쳐다본다.");
+		`);
+		writeEval("qwerty", `
+KorUtil.koreanify("dlfgdjqjflrh Rkajrdms Svps?"); // : 잃어버리고 까먹은 S펜?
+		`);
+
+		write("조사");
+		writeEval("fixPostPositions",[
+"KorUtil.fixPostPositions(`${'길동'}은(는) ${'어른'}(이)고, ${'희동'}(이)는 ${'어린이'}(이)다.`);",
+"KorUtil.fixPostPositions(`${'확'}율(률) ${'할인'}률(율)`);",
+"KorUtil.fixPostPositions(`하늘가(이) 땅이(가)`);",
+].join("\n"));
+		write("　");
+		[
+			["영희","영미","수익","아버지","어머니","할머니","얘기","허위"],
+			["영석","영준","할인","사촌형","사촌동생","삼촌","소문","거짓"],
+			["경일","남일","손실","게일","라헬","미쉘","일","사실"],
+			["Anderson","Clare","drain","Paul","Alice","Dr.M","gossip","nothing"],
+		].map(([a,b,c,d,e,f,g,h],i)=>{
+			str = `${a}(이)와 ${b}(이)는 ${c}율(률)에 대해 ${d}와(과) ${e}이(가) ${f}(으)로부터 들었던 ${g}은(는) ${h}(이)라고 했다.`;
+			str = KorUtil.fixPostPositions(str);
+			write(i+1, str);
+		});
+		write("　");
+
+	</script>
+</body>
+</html>
