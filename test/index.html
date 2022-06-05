@@ -30,8 +30,10 @@
 			write("　");
 		}
 	</script>
-	<script type="text/javascript" src="../dist/core.min.js"></script>
-	<script type="text/javascript" src="../dist/syntax.min.js"></script>
+	<script type="text/javascript" src="../lib/kor-util.core.js"></script>
+	<script type="text/javascript" src="../lib/kor-util.syntax.js"></script>
+	<!-- <script type="text/javascript" src="../dist/core.min.js"></script>
+	<script type="text/javascript" src="../dist/syntax.min.js"></script> -->
 </head>
 <body>
 	<script>
@@ -128,8 +130,9 @@ KorUtil.hasLastSound("특문!"); // : false
 		writeEval("qwerty", `
 KorUtil.qwerty("닭 쫓던 개X 지붕 쳐다본다.");
 		`);
-		writeEval("qwerty", `
+		writeEval("koreanify", `
 KorUtil.koreanify("dlfgdjqjflrh Rkajrdms Svps?"); // : 잃어버리고 까먹은 S펜?
+KorUtil.koreanify("comeback cyworld?"); // : 채ㅡ듐차 쵸재깅?
 		`);
 
 		write("조사");

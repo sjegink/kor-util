@@ -2,6 +2,11 @@
 
 Utilities of Korean language ver 1.0
 
+## Usage
+
+> WEB: const KorUtil = window.KorUtil;
+> Node: const KorUtil = require('korutil');
+
 ## References (Core)
 
 ### 음소 ; Phoneme
@@ -53,7 +58,7 @@ KorUtil.isFirstSound("sw", true); // (=="ㄴ") : true
 ```javascript
 KorUtil.isVowel("ㄱ"); // : false
 KorUtil.isVowel("ㅝ"); // : true
-KorUtil.isVowel("iam", true); // (=="ㅑ") : true
+KorUtil.isVowel("iam", true); // (=="ㅑ므") : false
 ```
 ---
 

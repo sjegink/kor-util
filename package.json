@@ -1,0 +1,35 @@
+{
+	"name": "kor-util",
+	"version": "1.0.0",
+	"description": "Utilities of Korean language",
+	"keywords": [
+		"korean",
+		"gksrmf"
+	],
+	"bugs": {
+		"url": "https://github.com/sjegink/kor-util/issues",
+		"email": "sjegink@gmail.com"
+	},
+	"license": "MIT",
+	"contributors": [
+		"sjegink <sjegink@gmail.com>"
+	],
+	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sjegink/kor-util.git"
+	},
+	"files": [
+		"dist",
+		"!test"
+	],
+	"dependencies": {
+	},
+	"PeerDependencies": {
+	},
+	"engines": {
+		"node": ">=13.14.0",
+		"npm": ">=6.14.4"
+	}
+
+}
