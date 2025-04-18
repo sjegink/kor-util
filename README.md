@@ -1,6 +1,6 @@
 # kor-util
 
-Utilities of Korean language ver 1.3
+Utilities of Korean language ver 1.3.1
 
 ## Usage
 
@@ -15,8 +15,7 @@ Utilities of Korean language ver 1.3
 ```html
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kor-util/dist/kor-util.js"></script>
 	<script type="type/javascript">
-		let end = korUtil.qwerty("둥");
-		let curry = qwerty("쳑교");
+		let sun = korUtil.koreanify("go");
 	</script>
 ```
 
@@ -134,6 +133,17 @@ korUtil.hasLastSound("특문!"); // : false
 ```
 ---
 
+#### hasLastSound
+* 주어진 문자의 마지막 글자가 받침이 있는 한글 음절이면 `true`를 반환합니다.
+* 자음 음소는 음절이 아닙니다.
+```javascript
+KorUtil.hasLastSound("개"); // : false
+KorUtil.hasLastSound("나의 책상"); // : true
+KorUtil.hasLastSound("twin"); // : false
+KorUtil.hasLastSound("특문!"); // : false
+```
+---
+
 ### 문장 ; String
 
 #### isKorean
@@ -180,6 +190,7 @@ korUtil.indexOfKoreanPhoneme("0가ㅉ34"); // : 2
 ```javascript
 korUtil.qwerty("닭 쫓던 개X 지붕 쳐다본다."); // : ekfr Whcejs roX wlqnd cuekqhsek.
 ```
+---
 
 #### koreanify
 * 입력된 문자열을 영문qwerty 자판으로 인식하여, 한글2벌식 자판으로 변환합니다.
