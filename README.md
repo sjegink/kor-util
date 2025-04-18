@@ -4,11 +4,20 @@ Utilities of Korean language ver 1.3
 
 ## Usage
 
+- Using Node.js
 ```javascript
 	import korUtil, { qwerty } from 'kor-util';
-
-	let curry = korUtil.qwerty("쳑교");
+	
+	let end = korUtil.qwerty("둥");
 	let curry = qwerty("쳑교");
+```
+- Browser
+```html
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kor-util/dist/kor-util.js"></script>
+	<script type="type/javascript">
+		let end = korUtil.qwerty("둥");
+		let curry = qwerty("쳑교");
+	</script>
 ```
 
 ## References (Core)
