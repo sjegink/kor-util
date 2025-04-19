@@ -1,6 +1,6 @@
 # kor-util
 
-Utilities of Korean language ver 1.3.1
+Utilities of Korean language ver 1.3.2
 
 ## Usage
 
