@@ -1,1 +1,2 @@
-export default 'lib/kor-util.ts';
+export default './lib/kor-util';
+export * from './lib/kor-util';
