@@ -15,7 +15,7 @@ Utilities of Korean language ver 1.3.2
 - Browser
 ```html
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kor-util/dist/kor-util.js"></script>
-	<script type="type/javascript">
+	<script type="text/javascript">
 		let curry = korUtil.qwerty("쳑교");
 		let luck = korUtil.koreanify("dns");
 	</script>
