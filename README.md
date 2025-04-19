@@ -4,18 +4,20 @@ Utilities of Korean language ver 1.3.1
 
 ## Usage
 
-- Using Node.js
+- Using Node.js (ESM)
 ```javascript
 	import korUtil, { qwerty } from 'kor-util';
 	
-	let end = korUtil.qwerty("둥");
-	let curry = qwerty("쳑교");
+	let end = qwerty("둥");
+	let right = korUtil.qwerty("꺄홋");
+	let sun = korUtil.koreanify("go");
 ```
 - Browser
 ```html
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kor-util/dist/kor-util.js"></script>
 	<script type="type/javascript">
-		let sun = korUtil.koreanify("go");
+		let curry = korUtil.qwerty("쳑교");
+		let luck = korUtil.koreanify("dns");
 	</script>
 ```
 
