@@ -35,16 +35,16 @@
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^28.0.3",
 		"@rollup/plugin-node-resolve": "^16.0.1",
-		"@types/jest": "^29.5.14",
-		"jest": "^29.7.0",
 		"rollup": "^4.40.0",
 		"terser": "^5.39.0",
-		"ts-jest": "^29.3.2",
-		"typescript": "^5.8.3"
+		"typescript": "^5.8.3",
+		"vitest": "^3.1.1"
 	},
 	"scripts": {
 		"clean": "del /q \".\\dist\\*.*\"",
-		"tsc": "npx tsc",
-		"build": "npm run clean  &  npm run tsc  &  npx rollup -c"
+		"tsc": "tsc",
+		"roll": "rollup -c  &  del /q \".\\dist\\*.*.js\"",
+		"build": "npm run clean  &  npm run tsc  &  npm run roll",
+		"test": "vitest run --dir test"
 	}
 }

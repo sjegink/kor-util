@@ -1,4 +1,5 @@
-import korUtil from '../index';
+import { expect, test } from 'vitest';
+import korUtil from '../lib/kor-util';
 
 // #region 0 Favorite
 
